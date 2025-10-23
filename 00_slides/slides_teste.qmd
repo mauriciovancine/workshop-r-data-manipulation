@@ -1,0 +1,25 @@
+---
+title: "Manipulação de dados em R (tidyverse)"
+subtitle: "<br>NT265/NE441 - Análise de dados e apresentação de gráficos usando a linguagem R"
+author: "[Maurício Vancine](https://mauriciovancine.github.io)"
+date: "11/05/2025"
+date-format: long
+format: 
+  revealjs:
+    theme: [custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    preview-links: false
+    chalkboard: true
+    logo: "https://www.r-project.org/logo/Rlogo.svg"
+    execute:
+      echo: true
+      eval: false
+      warning: false
+      message: false
+editor: source
+lang: pt-br
+---
+
+

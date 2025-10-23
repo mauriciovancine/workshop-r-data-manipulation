@@ -1,0 +1,1979 @@
+---
+title: "Manipulação de dados em R (tidyverse)"
+subtitle: "<br>NT265/NE441 - Análise de dados e apresentação de gráficos usando a linguagem R"
+author: "[Maurício Vancine](https://mauriciovancine.github.io)"
+date: "11/05/2025"
+date-format: long
+format: 
+  revealjs:
+    theme: [custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    preview-links: false
+    chalkboard: true
+    logo: "https://www.r-project.org/logo/Rlogo.svg"
+    execute:
+      echo: true
+      eval: true
+      warning: false
+      message: false
+editor: source
+lang: pt-br
+---
+
+# tidyverse
+
+# 
+
+<center>
+<img src="img/general_data_science_r4ds.png" style="width:100%"/>
+</center>
+
+::: footer
+Artwork by [@allison_horst](https://x.com/allison_horst)
+:::
+
+## Conteúdo
+
+<br><br>
+
+::::::: columns
+:::: {.column width="50%"}
+::: nonincremental
+- Contextualização
+- tidyverse
+- readr, readxl e writexl
+- tibble
+- magrittr (pipe - %\>%)
+:::
+::::
+
+:::: {.column width="50%"}
+::: nonincremental
+- tidyr
+- dplyr
+- stringr
+- forcats
+- lubridate
+- purrr
+:::
+::::
+:::::::
+
+## Ciência de dados ambiental (*Environmental Data Science*)
+
+<center>
+<img src="img/EnvDataSci.png" style="width:50%"/>
+</center>
+
+::: footer
+[Introduction to Environmental Data Science](https://bookdown.org/igisc/EnvDataSci/)
+:::
+
+## Ecoinformatics
+
+<br>
+
+<center>
+<img src="img/ecoinformatics_diagram.png" style="width:50%"/>
+</center>
+
+::: footer
+[Ecoinformatics Initiative](http://www.uwyo.edu/wygisc/our_research/ongoing_research/ecoinformatics_initiative.html), [Michener & Jones (2012)](https://doi.org/10.1016/j.tree.2011.11.016), [Lin et al. (2020)](https://doi.org/10.22920/PNIE.2020.1.1.9)
+:::
+
+## Ciência de dados para ecólogos <br> (*Data Science for Ecologists*)
+
+<center>
+<img src="img/data_science_eco.png" style="width:70%"/>
+</center>
+
+::: footer
+[Data Science for Ecologists and Environmental Scientists](https://ourcodingclub.github.io/course)
+:::
+
+## Environmental Data Science
+
+<center>
+<img src="img/environmental_data science_cut.png" style="width:50%"/>
+</center>
+
+::: footer
+[Environmental Data Science](https://www.cambridge.org/core/journals/environmental-data-science)
+:::
+
+# Legal, mas ainda está distante...
+
+# Legal, mas ainda está distante... Nem tanto...
+
+# Big Data em Ecologia
+
+## Big Data em Ecologia
+
+**Mudança de paradigma**
+
+<center>
+<img src="img/bigdata01.png" style="width:100%"/>
+</center>
+
+:::footer
+[McCleery et al. (2023)](https://doi.org/10.1016/j.tree.2023.05.010)
+:::
+
+## Big Data em Ecologia
+
+**Quantidade de dados**
+
+<center>
+<img src="img/bigdata02.jpg" style="width:90%"/>
+</center>
+
+:::footer
+[Farley et al. (2018)](https://academic.oup.com/bioscience/article/68/8/563/5049569)
+:::
+
+## Data papers
+
+<center>
+<img src="img/data_papers.png" style="width:100%"/>
+</center>
+
+:::footer
+[Atlantic series](https://github.com/LEEClab/Atlantic_series), [Brazil series](https://github.com/LEEClab/BRAZIL_SERIES), [Neotropical series](https://github.com/LEEClab/Neotropical_Series)
+:::
+
+## iEcology
+
+![](img/iecology01.jpg){.absolute width=600 height=500 right=520 top=150}
+![](img/iecology02.jpg){.absolute width=600 height=550 right=-120 top=100}
+
+:::footer
+[Jarić et al. (2020)](https://doi.org/10.1016/j.tree.2020.03.003)
+:::
+
+## Monitoramento automatizado
+
+![](img/auto_sampling02.webp){.absolute width=1200 height=500 right=0 top=150}
+
+:::footer
+[Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
+:::
+
+## Monitoramento automatizado
+
+![](img/auto_sampling01.webp){.absolute width=700 height=500 right=450 top=125}
+![](img/auto_sampling03.jpg){.absolute width=400 height=550 right=0 top=100}
+
+:::footer
+[Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
+:::
+
+# Machine Learning em Ecologia
+
+## Machine Learning em Ecologia
+
+<center>
+<img src="img/machine_learning01.webp" style="width:90%"/>
+</center>
+
+:::footer
+[Pichler & Hartig (2023)](https://doi.org/10.1111/2041-210X.14061)
+:::
+
+## Machine Learning em Ecologia
+
+<center>
+<img src="img/machine_learning02.webp" style="width:80%"/>
+</center>
+
+:::footer
+[Pichler & Hartig (2023)](https://doi.org/10.1111/2041-210X.14061)
+:::
+
+## Machine Learning em Ecologia
+
+<center>
+<img src="img/machine_learning03.webp" style="width:70%"/>
+</center>
+
+:::footer
+[Pichler & Hartig (2023)](https://doi.org/10.1111/2041-210X.14061)
+:::
+
+## Deep Learning em Ecologia
+
+Amostragem de insetos e fragmentação em Balbinas (AM)
+
+![](img/ml01.jpg){.absolute width="550" right="650" top="170"}
+![](img/ml02.jpg){.absolute width="800" right="-170" top="120"}
+
+:::footer
+[Colares et al. (2025)](https://doi.org/10.1111/1365-2656.70117), [Gonçalves-Souza et al. (2025)](https://doi.org/10.1111/1365-2656.70165)
+:::
+
+## Script
+
+Abram o script
+
+<br><br><br><br>
+
+`script_r.R`
+
+::: footer
+[course-intror - scripts](https://github.com/course-intror/scripts)
+:::
+
+# tidyverse
+
+## Descrição
+
+-   O `tidyverse` é um conjunto de pacotes designados para *Data Science*
+
+-   Todos os pacotes compartilham uma filosofia de design, gramática e estruturas de dados
+
+-   É um "dialeto novo" para a linguagem R
+
+**tidy**: organizado, arrumado, ordenado\
+**verse**: universo
+
+::: footer
+[What is the tidyverse?](https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/)
+:::
+
+## Fluxo de trabalho
+
+<br><br>
+
+<center>
+<img src="img/general_data_science.png" style="width:100%"/>
+</center>
+
+::: footer
+[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
+:::
+
+## Pacotes
+
+<center>
+<img src="img/tidyverse_flowchart.png" style="width:90%"/>
+</center>
+
+## Artigos {.smaller}
+
+-   Wickham, Hadley. "Tidy data." Journal of Statistical Software 59.10 (2014): 1-23.
+
+-   Wickham, Hadley, et al. "Welcome to the Tidyverse." Journal of Open Source Software 4.43 (2019): 1686.
+
+<center>
+<img src="img/tidyverse_papers.png" style="width:45%"/>
+</center>
+
+::: footer
+[Wickham (2014)](https://www.jstatsoft.org/article/view/v059i10), [Wickham et al. (2019)](https://joss.theoj.org/papers/10.21105/joss.01686)
+:::
+
+## Livro
+
+<center>
+<img src="img/cover_data_science_r.jpg" style="width:40%"/>
+</center>
+
+::: footer
+[Wickham et al. (2023)](https://r4ds.had.co.nz/)
+:::
+
+## Livro
+
+**Tradução para o português**
+
+[R para Ciência de Dados (2ª edição)](https://pt.r4ds.hadley.nz/)
+
+<center>
+<img src="img/cover_data_science_r.jpg" style="width:33%"/>
+</center>
+
+::: footer
+[Wickham et al. (2023)](https://r4ds.had.co.nz/)
+:::
+
+## Site
+
+<br>
+
+<center>
+<img src="img/tidyverse_site.png" style="width:100%"/>
+</center>
+
+::: footer
+[tidyverse](https://www.tidyverse.org/)
+:::
+
+# 
+
+<center>
+<img src="img/package_tidyverse.png" style="width:50%"/>
+</center>
+
+::: footer
+[tidyverse](https://tidyverse.tidyverse.org/)
+:::
+
+## tidyverse
+
+Para utilizar os pacotes é preciso instalar e carregar o pacote `tidyverse`
+
+```{r eval=FALSE}
+# instalar pacote
+install.packages("tidyverse")
+```
+
+```{r message=TRUE}
+# carregar pacote
+library(tidyverse)
+```
+
+## Pacotes do tidyverse
+
+**Listar os pacotes**
+
+```{r}
+# listar todos os pacotes no tidyverse 
+tidyverse::tidyverse_packages(include_self = TRUE)
+```
+
+## Sintaxe
+
+Todas as funções dos pacotes `tidyverse` usam `fonte minúscula` e `_` para separar os nomes internos das funções (`snake_case`)
+
+<br> `read_csv()`
+
+`read_xlsx()`
+
+`as_tibble()`
+
+`left_join()`
+
+`group_by()`
+
+![](img/code_snake_case.png){.absolute width="500" height="250" right="150" top="350"}
+
+## Sintaxe
+
+Geralmente indica-se de quais pacotes as funções são utilizadas (`pacote::função`) para evitar erros com outros pacotes
+
+<br> `readr::read_csv()`
+
+`readxl::read_xlsx()`
+
+`tibble::as_tibble()`
+
+`dplyr::left_join()`
+
+`dplyr::group_by()`
+
+# 
+
+<center><img src="img/package_readr.png" style="width:50%"/></center>
+
+::: footer
+[readr](https://readr.tidyverse.org/)
+:::
+
+## Descrição {.smaller}
+
+-   Carrega e salva grandes arquivos de forma rápida
+
+-   As funções fornecem medidores de progresso (*big data*)
+
+-   Classificam o modo (tipo dos dados) de cada coluna
+
+-   A classe do objeto atribuído é `tibble`
+
+-   Funções:
+
+-   `read_csv()`: lê arquivos *Comma-separated values*
+
+-   `read_csv2()`: lê arquivos *Comma-separated values* (separado por ;)
+
+-   `read_tsv()`: lê arquivos *Tab-separated values*
+
+-   `read_delim()`: lê arquivos *delim-separated values*
+
+-   `write_csv()`: escreve arquivos *Comma-separated values*
+
+-   `write_csv2()`: escreve arquivos *Comma-separated values* (separado por ;)
+
+-   `write_delim()`: escreve arquivos *delim-separated values*
+
+## Diretório
+
+Caminho no computador para importar e exportar dados
+
+**Definir diretório**
+
+```{r eval=FALSE}
+# definir diretorio
+setwd("/home/mude/data/github/workshop-r-data-manipulation/03_data")
+```
+
+**Conferir diretório**
+
+```{r eval=FALSE}
+# conferir diretorio
+getwd()
+
+# listar arquivos
+dir()
+```
+
+# Vamos trabalhar com dados reais?
+
+#
+
+<center>
+<img src="img/general_real_data.jpg" style="width:60%"/>
+</center>
+
+## Importar dados
+
+ATLANTIC AMPHIBIANS: a dataset of amphibian communities from the Atlantic Forests of South America
+
+<center><img src="img/general_data_eu_mesmo.png" style="width:75%"/></center>
+
+::: footer
+[Vancine et al. (2018)](https://doi.org/10.1002/ecy.2392)
+:::
+
+## Importar dados
+
+**Formato .csv**
+
+```{r eval=FALSE}
+# ler uma planilha eletronica (.csv)
+si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
+si
+```
+
+```{r echo=FALSE}
+si <- readr::read_csv("data/ATLANTIC_AMPHIBIANS_sites.csv")
+si
+```
+
+## Importar dados
+
+**Formato .txt**
+
+```{r eval=FALSE}
+# importar txt
+si <- readr::read_tsv("ATLANTIC_AMPHIBIANS_sites.txt")
+si
+```
+
+```{r echo=FALSE}
+# importar txt
+si <- readr::read_tsv("data/ATLANTIC_AMPHIBIANS_sites.txt")
+si
+```
+
+# 
+
+<center><img src="img/package_readxl.png" style="width:50%"/></center>
+
+::: footer
+[readxl](https://readxl.tidyverse.org/)
+:::
+
+## Descrição {.smaller}
+
+Pacotes para importar e exportar planilhas no formato Excel®
+
+-   Carrega e salva grandes arquivos de forma rápida
+
+-   As funções fornecem medidores de progresso (*big data*)
+
+-   Classificam o modo (tipo dos dados) de cada coluna
+
+-   A classe do objeto atribuído é `tibble`
+
+-   Funções:
+
+-   `read_excel()`: lê arquivos de planilhas Excel®
+
+-   `read_xls()`: lê arquivos de planilhas Excel® (antes de 2010)
+
+-   `write_xlsx()`: escreve arquivos de planilhas Excel®
+
+```{r eval=FALSE}
+# importar .xlsx
+install.packages("readxl")
+library("readxl")
+
+# exportar .xlsx
+install.packages("writexl")
+library("writexl")
+```
+
+## Importar dados
+
+**Formato .xlsx**
+
+```{r eval=FALSE}
+# importar xlsx
+si <- readxl::read_excel("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1)
+si
+```
+
+```{r echo=FALSE}
+# importar xlsx
+si <- readxl::read_excel("data/ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1)
+si
+```
+
+## Exportar dados
+
+**Diversos formatos**
+
+```{r eval=FALSE}
+# exportar csv
+readr::write_csv(si, "ATLANTIC_AMPHIBIANS_sites_exportado.csv")
+
+# exportar txt
+readr::write_tsv(si, "ATLANTIC_AMPHIBIANS_sites_exportado.txt")
+
+# exportar excel
+writexl::write_xlsx(si, "ATLANTIC_AMPHIBIANS_sites_exportado.xlsx")
+```
+
+# 
+
+<center><img src="img/package_tibble.png" style="width:50%"/></center>
+
+::: footer
+[tibble](https://tibble.tidyverse.org/)
+:::
+
+## Descrição {.smaller}
+
+-   Dados importados de planilhas eletrônicas são *data frames* (quadro de dados)
+
+-   `tibble` (classe `tbl_df`) é um tipo especial de data frame
+
+-   Classe adequada para o funcionamento das das funções do `tidyverse`
+
+```{r eval=FALSE}
+# tibble
+tb <- tibble::tibble(a = 1:10)
+tb
+
+as.data.frame(tb)
+```
+
+<br>
+
+<center><img src="img/tibble.webp" style="width:40%"/></center>
+
+## Espiando os dados {.smaller}
+
+-   Descrição dos dados: linhas (*Rows*) e colunas (*Columns*)
+
+-   Descrição das colunas: *numbers(int, dbl)*, *character(chr)*, *logical(lgl)* ou *factor(fctr)*
+
+```{r}
+# descricao dos dados de sites
+tibble::glimpse(si)
+```
+
+# 
+
+<center><img src="img/package_magrittr.png" style="width:50%"/></center>
+
+::: footer
+[magrittr](https://magrittr.tidyverse.org/)
+:::
+
+## René Magritte (1898-1967)
+
+-   Artista surrealista belga
+
+-   "Ceci n'est pas une pipe"
+
+-   Isso não é um cachimbo
+
+![](img/tidyverse_magritte_pipe.jpg){.absolute width="500" height="300" right="550" top="350"}
+
+![](img/person_rene_magritte.jpg){.absolute width="500" height="500" right="-50" top="150"}
+
+## Descrição {.smaller}
+
+-   *Pipe* pode ser traduzido como "cano" ou "tubo"
+
+-   Permite o "encadeamento" de várias funções sem armazenar resultados intermediários
+
+-   Captura o resultado de uma função e torna a entrada da próxima função
+
+-   Os códigos se tornam mais simples, pois permite a leitura sequencial do mesmo
+
+-   Operador pipe: `%>%`
+
+-   Atalho: `crtl + shift + M`
+
+```{r eval=FALSE}
+# sem pipe
+obj <- funcao2(funcao1(dados))
+
+# pipe
+obj <- dados %>% 
+  funcao1() %>% 
+  funcao2()
+```
+
+# Se preparem para uma revisão de funções compostas
+
+## Função composta
+
+**Função composta no R**
+
+```{r}
+# sem pipe
+sqrt(sum(1:100))
+```
+
+![](img/general_fog01.jpg){.absolute width="500" height="250" right="550" top="350"}
+
+![](img/general_fog02.jpg){.absolute width="450" height="450" right="0" top="250"}
+
+## pipe {.smaller}
+
+**Sem pipe**
+
+```{r}
+# sem pipe
+sqrt(sum(1:100))
+```
+
+**Com pipe**
+
+```{r}
+# com pipe
+1:100 %>% 
+  sum() %>% 
+  sqrt()
+```
+
+![](img/gif_mario.gif){.absolute width="350" height="300" right="430" top="400"}
+
+![](img/waterfall.gif){.absolute width="400" height="300" right="0" top="400"}
+
+## pipe
+
+**Sem pipe**
+
+```{r}
+# fixar amostragem
+set.seed(42)
+
+# sem pipe
+ve <- sqrt(sum(sample(0:60, 6)))
+ve
+```
+
+**Com pipe**
+
+```{r}
+# fixar amostragem
+set.seed(42)
+
+# com pipe
+ve <- sample(0:60, 6) %>% 
+  sum() %>%
+  sqrt() 
+ve  
+```
+
+## Exercício
+
+Reescreva cada uma das operações utilizando pipes `%>%`
+
+`log10(cumsum(1:100))`
+
+`sum(sqrt(abs(rnorm(100))))`
+
+`sum(log(sample(1:10, 10000, rep = TRUE)))`
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 5, seconds = 00, color_background = "gray30",
+                     font_size = "2em", play_sound = TRUE)
+```
+
+## Exercício
+
+**Solução**
+
+```{r eval=FALSE}
+# solucao 1
+log10(cumsum(1:100))
+
+1:100 %>%
+  cumsum() %>% 
+  log10()
+```
+
+## Exercício
+
+**Solução**
+
+```{r eval=FALSE}
+# solucao 2
+sum(sqrt(abs(rnorm(100))))
+
+rnorm(100) %>% 
+  abs() %>% 
+  sqrt() %>% 
+  sum()
+```
+
+## Exercício
+
+**Solução**
+
+```{r eval=FALSE}
+# solucao 3
+sum(log(sample(1:10, 10000, rep = TRUE)))
+
+sample(1:10, 10000, rep = TRUE) %>% 
+  log() %>% 
+  sum()
+```
+
+# Para apresentar os próximos pacotes, vamos usar dados de pinguins!
+
+# 
+
+<center><img src="img/package_palmerpenguins.png" style="width:50%"/></center>
+
+::: footer
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+:::
+
+## palmerpenguins {.smaller}
+
+-   Dados de medidas de pinguins chamados `palmerpenguins`
+
+-   Dados coletados e disponibilizados pela [Dra. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) e pela [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), membro da [Long Term Ecological Research Network](https://lternet.edu/)
+
+-   Dois conjuntos de dados:
+
+-   `penguins_raw` (dados brutos)
+
+-   `penguins` (versão simplificada)
+
+![](img/lter_penguins.png){.absolute width="700" height="400" right="-50" top="300"}
+
+::: footer
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+:::
+
+## palmerpenguins
+
+```{r eval=FALSE}
+# instalar 
+install.packages("palmerpenguins")
+
+# carregar
+library(palmerpenguins)
+
+# ajuda dos dados
+?penguins
+?penguins_raw
+```
+
+```{r echo=FALSE}
+library(palmerpenguins)
+```
+
+<center><img src="img/culmen_depth.png" style="width:50%"/></center>
+
+::: footer
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+:::
+
+## palmerpenguins
+
+```{r eval=FALSE}
+# visualizar os dados
+penguins
+penguins_raw
+
+# glimpse
+tibble::glimpse(penguins)
+tibble::glimpse(penguins_raw)
+```
+
+<br>
+
+<center><img src="img/culmen_depth.png" style="width:50%"/></center>
+
+::: footer
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+:::
+
+# 
+
+<center><img src="img/package_tidyr.png" style="width:50%"/></center>
+
+::: footer
+[tidyr](https://tidyr.tidyverse.org/)
+:::
+
+## Descrição {.smaller}
+
+-   Funções para tornar um conjunto de dados *tidy* (organizados), facilitando a manipulação, modelagem e visualização
+
+-   Um conjunto de dados é condiderando *tidy* quando:
+
+1.  Cada variável está em uma coluna
+2.  Cada observação está em uma linha
+3.  Cada valor está em uma célula
+
+<center><img src="img/tidyr_data01.png" style="width:100%"/></center>
+
+::: footer
+[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
+:::
+
+## Funções {.smaller}
+
+<center><img src="img/tidyr_data02.jpg" style="width:100%"/></center>
+
+::: footer
+Artwork by [@allison_horst](https://x.com/allison_horst)
+:::
+
+## unite
+
+Une dados de múltiplas colunas em apenas uma coluna
+
+```{r}
+# unir colunas
+penguins_raw_unir <- tidyr::unite(data = penguins_raw, 
+                                  col = "region_island",
+                                  Region:Island, 
+                                  sep = ", ",
+                                  remove = FALSE)
+head(penguins_raw_unir[, c("Region", "Island", "region_island")])
+```
+
+## separate
+
+Separa caracteres de uma coluna em múltiplas colunas
+
+```{r}
+# separar colunas
+penguins_raw_separar <- tidyr::separate(data = penguins_raw, 
+                                        col = Stage,
+                                        into = c("stage", "egg_stage"), 
+                                        sep = ", ",
+                                        remove = FALSE)
+head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
+```
+
+## drop_na
+
+Remove linhas com `NA` de todas as colunas
+
+```{r}
+# remover linhas com na
+penguins_raw_todas_na <- tidyr::drop_na(data = penguins_raw)
+head(penguins_raw_todas_na)
+```
+
+## drop_na
+
+Remove linhas com `NA` de uma única coluna
+
+```{r}
+# remover linhas com na de uma coluna
+penguins_raw_colunas_na <- tidyr::drop_na(data = penguins_raw,
+                                          any_of("Comments"))
+head(penguins_raw_colunas_na[, "Comments"])
+```
+
+## Pivotar os dados
+
+**Dados long e dados wide**
+
+<center>
+<img src="img/tidyr_pivot_wider.png" style="width:75%"/>
+</center>
+
+. . .
+
+<center>
+<img src="img/tidyr_pivot_longer.png" style="width:75%"/>
+</center>
+
+## Pivotar os dados
+
+**Dados long e dados wide**
+
+![](img/tidyr_tb_pivot.png){.absolute width=700 height=500 right=520 top=150}
+![](img/gif_tidyr_pivot.gif){.absolute width=600 height=550 right=-120 top=100}
+
+## pivot_wider() 
+
+**Long para wide**
+
+::: {style="font-size: 70%;"}
+1. **names_from**: variável categórica que definirá os nomes das colunas
+2. **values_from**: variável numérica que preencherá os dados
+3. **values_fill**: valor para preencher os NAs
+
+```{r}
+# long para wide
+penguins_raw_pivot_wider <- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 13)], 
+                                               names_from = Species, 
+                                               values_from = `Body Mass (g)`)
+head(penguins_raw_pivot_wider)
+```
+:::
+
+## pivot_longer()
+
+**Wide para long**
+
+::: {style="font-size: 70%;"}
+1. **names_to**: nome da coluna que receberá os nomes
+2. **values_to**: nome da coluna que receberá os valores
+
+```{r}
+# wide para long
+penguins_raw_pivot_longer <- tidyr::pivot_longer(data = penguins_raw[, c(2, 3, 10:13)], 
+                                                 cols = `Culmen Length (mm)`:`Body Mass (g)`,
+                                                 names_to = "medidas", 
+                                                 values_to = "valores")
+head(penguins_raw_pivot_longer)
+```
+:::
+
+# 
+
+<center><img src="img/package_dplyr.png" style="width:50%"/></center>
+
+::: footer
+[dplyr](https://dplyr.tidyverse.org/)
+:::
+
+## Descrição
+
+Funções que facilitam a manipulação de dados
+
+<center><img src="img/dplyr_functions.png" style="width:60%"/></center>
+
+## Funções {.smaller}
+
+Gramática simples que contém funções verbais para a manipulação de dados
+
+<br>
+
+-   Verbos: `mutate()`, `select()`, `filter()`, `arrange()`, `summarise()`, `slice()`, `rename()`, etc.
+-   Replicação: `across()`, `if_any()`, `if_all()`, `where()`, `starts_with()`, `ends_with()`, `contains()`, etc.
+-   Agrupamento: `group_by()` e `ungroup()`
+-   Junções: `inner_join()`, `full_join()`, `left_join()`, `right_join()`, etc.
+-   Combinações: `bind_rows()` e `bind_cols()`
+-   Resumos, contagem e seleção: `n()`, `n_distinct()`, `first()`, `last()`, `nth()`, etc.
+
+## Funções {.smaller}
+
+**Colunas**
+
+`relocate()`: muda a ordem das colunas\
+`rename()`: muda o nome das colunas\
+`select()`: seleciona colunas pelo nome ou posição\
+`pull()`: seleciona uma coluna como vetor\
+`mutate()`: adiciona novas colunas ou resultados em colunas existentes
+
+**Linhas**
+
+`arrange()`: reordena as linhas com base nos valores de colunas\
+`filter()`: seleciona linhas com base em valores de colunas\
+`slice()`: seleciona linhas de diferente formas\
+`distinct()`: remove linhas com valores repetidos com base nos valores de colunas
+
+**Agrupamento**
+
+`count()`: conta observações para uma ou mais coluna\
+`group_by()`: agrupa linhas pelos valores das colunas\
+`summarise()`: resume os dados através de funções considerando valores das colunas
+
+## Sintaxe {.smaller}
+
+-   O `tibble` é sempre o primeiro argumento das funções verbais
+
+-   Todas seguem a mesma sintaxe:
+
+1.  tibble
+2.  operador pipe
+3.  nome da função verbal com os argumentos entre parênteses
+
+As funções verbais não modificam o tibble original
+
+```{r eval=FALSE}
+# sintaxe
+tb_dplyr <- tb %>% 
+  funcao_verbal1(argumento1, argumento2, ...) %>% 
+  funcao_verbal2(argumento1, argumento2, ...) %>% 
+  funcao_verbal3(argumento1, argumento2, ...)
+```
+
+## relocate
+
+Reordena colunas por nome ou posição
+
+```{r}
+# reordenar colunas - nome
+penguins_relocate_col <- penguins %>% 
+  dplyr::relocate(sex, year, .after = island)
+head(penguins_relocate_col)
+```
+
+## relocate
+
+Reordena colunas por nome ou posição
+
+```{r}
+# reordenar colunas - posicao
+penguins_relocate_ncol <- penguins %>% 
+  dplyr::relocate(sex, year, .after = 2)
+head(penguins_relocate_ncol)
+```
+
+## rename
+
+Renomeia colunas
+
+```{r}
+# renomear colunas
+penguins_rename <- penguins %>% 
+  dplyr::rename(bill_length = bill_length_mm,
+                bill_depth = bill_depth_mm,
+                flipper_length = flipper_length_mm,
+                body_mass = body_mass_g)
+head(penguins_rename)
+```
+
+## select
+
+Seleciona colunas pela posição ou nome
+
+```{r}
+# selecionar colunas por posicao
+penguins_select_position <- penguins %>% 
+  dplyr::select(3:6)
+head(penguins_select_position)
+```
+
+## select
+
+Seleciona colunas pela posição ou nome
+
+```{r}
+# selecionar colunas por nomes
+penguins_select_names <- penguins %>% 
+  dplyr::select(bill_length_mm:body_mass_g)
+head(penguins_select_names)
+```
+
+## select
+
+Remove colunas pela posição ou nome
+
+```{r}
+# remover colunas pelo nome
+penguins_select_names_remove <- penguins %>% 
+  dplyr::select(-(bill_length_mm:body_mass_g))
+head(penguins_select_names_remove)
+```
+
+## select
+
+Seleciona ou remove colunas por um padrão nos nomes
+
+```{r}
+# selecionar colunas por padrao - starts_with(), ends_with() e contains()
+penguins_select_contains <- penguins %>% 
+  dplyr::select(contains("_mm"))
+head(penguins_select_contains)
+```
+
+## pull
+
+Seleciona uma coluna como vetor
+
+```{r}
+# coluna para vetor
+penguins_select_pull <- penguins %>% 
+  dplyr::pull(bill_length_mm)
+head(penguins_select_pull, 15)
+```
+
+## mutate
+
+Adiciona colunas novas ou advindas de operações
+
+```{r}
+# adicionar colunas
+penguins_mutate <- penguins %>% 
+  dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
+head(penguins_mutate)
+```
+
+## arrange
+
+Reordena linhas de forma crescente pelos valores de uma coluna
+
+```{r}
+# reordenar os valores por ordem crescente
+penguins_arrange <- penguins %>% 
+  dplyr::arrange(body_mass_g)
+head(penguins_arrange)
+```
+
+## arrange
+
+Reordena linhas de forma decrescente pelos valores de uma coluna
+
+```{r}
+# reordenar os valores por ordem decrescente
+penguins_arrange_desc <- penguins %>% 
+  dplyr::arrange(desc(body_mass_g))
+head(penguins_arrange_desc)
+```
+
+## arrange
+
+Reordena linhas de forma decrescente pelos valores de uma coluna
+
+```{r}
+# reordenar os valores por ordem decrescente
+penguins_arrange_desc_m <- penguins %>% 
+  dplyr::arrange(-body_mass_g)
+head(penguins_arrange_desc_m)
+```
+
+## filter
+
+Filtra linhas por valores de uma coluna
+
+```{r}
+# filtrar linhas por valores de uma coluna
+penguins_filter <- penguins %>% 
+  dplyr::filter(species == "Adelie")
+head(penguins_filter)
+```
+
+## filter
+
+Filtra linhas por valores de várias colunas
+
+```{r}
+# filtrar linhas por valores de duas colunas
+penguins_filter_two <- penguins %>% 
+  dplyr::filter(species == "Adelie" & sex == "female")
+head(penguins_filter_two)
+```
+
+## filter
+
+Filtra linhas por vários valores de várias colunas
+
+```{r}
+# filtrar linhas por mais de um valor e mais de uma coluna
+penguins_filter_in <- penguins %>% 
+  dplyr::filter(species %in% c("Adelie", "Gentoo"),
+                sex == "female")
+head(penguins_filter_in)
+```
+
+## slice
+
+Seleciona linhas por intervalos, indicando quais linhas desejamos
+
+```{r}
+# selecionar linhas por intervalos
+penguins_slice <- penguins %>% 
+  dplyr::slice(c(1, 3, 300:n()))
+head(penguins_slice)
+```
+
+## slice
+
+Seleciona linhas iniciais
+
+```{r}
+# selecionar linhas iniciais
+penguins_slice_head <- penguins %>% 
+  dplyr::slice_head(n = 5)
+head(penguins_slice_head)
+```
+
+## slice
+
+Seleciona linhas aleatoriamente, com e sem reposição
+
+```{r}
+# selecionar linhas aleatoriamente
+penguins_slice_sample <- penguins %>% 
+  dplyr::slice_sample(n = 30, replace = FALSE)
+head(penguins_slice_sample)
+```
+
+## distinct
+
+Retira linhas com valores duplicados com base nos valores de colunas
+
+```{r}
+# retirar linhas com valores duplicados
+penguins_distinct <- penguins %>% 
+  dplyr::distinct(body_mass_g)
+head(penguins_distinct)
+```
+
+## distinct
+
+Retira linhas com valores duplicados com base nos valores de colunas, mas mantendo as colunas
+
+```{r}
+# retirar linhas com valores duplicados e manter colunas
+penguins_distinct_keep_all <- penguins %>% 
+  dplyr::distinct(body_mass_g, .keep_all = TRUE)
+head(penguins_distinct_keep_all)
+```
+
+## count
+
+Conta valores de uma ou mais colunas (variáveis categóricas)
+
+```{r}
+# contagens de valores para uma coluna
+penguins_count <- penguins %>% 
+  dplyr::count(species)
+penguins_count
+```
+
+## count
+
+Conta valores de uma ou mais colunas (variáveis categóricas)
+
+```{r}
+# contagens de valores para mais de uma coluna
+penguins_count_two <- penguins %>% 
+  dplyr::count(species, island)
+penguins_count_two
+```
+
+## count
+
+Conta valores de uma ou mais colunas (variáveis categóricas) ordenando a contagem
+
+```{r}
+# contagens de valores para mais de uma coluna
+penguins_count_two_sort <- penguins %>% 
+  dplyr::count(species, island, sort = TRUE)
+penguins_count_two_sort
+```
+
+## group_by
+
+Transforma um `tibble` em um `tibble agrupado`, onde as operações são realizadas "por grupo"
+
+```{r}
+# agrupamento
+penguins_group_by <- penguins %>% 
+  dplyr::group_by(species)
+head(penguins_group_by)
+```
+
+## summarise
+
+Agrega ou resume dados através de funções síntese
+
+```{r}
+# resumo
+penguins_summarise <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+                   body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
+penguins_summarise
+```
+
+## bind_rows() e bind_cols()
+
+Combina dados por linhas ou por colunas
+
+::: {style="font-size: 70%;"}
+```{r}
+# selecionar as linhas para dois tibbles
+penguins_01 <- dplyr::slice(penguins, 1:5)
+head(penguins_01)
+
+penguins_02 <- dplyr::slice(penguins, 51:55)
+head(penguins_02)
+```
+:::
+
+## bind_rows() e bind_cols()
+
+Combina dados por linhas
+
+```{r}
+# combinar as linhas
+penguins_bind_rows <- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
+head(penguins_bind_rows)
+```
+
+## bind_rows() e bind_cols()
+
+Combina dados por colunas
+
+```{r}
+## combinar as colunas
+penguins_bind_cols <- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
+head(penguins_bind_cols)
+```
+
+# 
+
+<center><img src="img/package_stringr.png" style="width:50%"/></center>
+
+::: footer
+[stringr](https://stringr.tidyverse.org/)
+:::
+
+## stringr
+
+- Pacote para a manipulação de **strings** ou **caracteres**
+- **Exemplos**: correspondência de padrões, retirar e acrescentar espaços em branco, mudar maiúsculas e minúsculas
+- Pode ser **utilizado em conjunto** com o pacote `dplyr` para manejar dados de colunas
+- Para **funções mais específicas**, recomenda-se usar o pacote [stringi](https://stringi.gagolewski.com/)
+
+## stringr
+
+Comprimento
+
+```{r}
+# comprimento
+stringr::str_length(string = "penguins")
+```
+
+Substituir
+
+```{r}
+# substituir
+stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
+```
+
+Separar
+
+```{r}
+# separar
+stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
+```
+
+## stringr
+
+Extrair pela posição
+
+```{r}
+# extrair pela posicao
+stringr::str_sub(string = "penguins", end = 3)
+```
+
+Extrair por padrão
+
+```{r}
+# extrair por padrao
+stringr::str_extract(string = "penguins", pattern = "p")
+```
+
+## stringr
+
+Inserir espacos em branco
+
+```{r}
+# inserir espaco em branco - esquerda
+stringr::str_pad(string = "penguins", width = 10, side = "left")
+
+# inserir espaco em branco - direita
+stringr::str_pad(string = "penguins", width = 10, side = "right")
+
+# inserir espaco em branco - ambos
+stringr::str_pad(string = "penguins", width = 10, side = "both")
+```
+
+## stringr
+
+Remover espaços em branco
+
+```{r}
+# remover espacos em branco - esquerda
+stringr::str_trim(string = " penguins ", side = "left")
+
+# remover espacos em branco - direta
+stringr::str_trim(string = " penguins ", side = "right")
+
+# remover espacos em branco - ambos
+stringr::str_trim(string = " penguins ", side = "both")
+```
+
+## stringr
+
+Alterar minúsculas e maiúsculas
+
+```{r}
+# minusculas
+stringr::str_to_lower(string = "Penguins")
+
+# maiusculas
+stringr::str_to_upper(string = "penguins")
+
+# primeiro caracter maiusculo da primeira palavra
+stringr::str_to_sentence(string = "palmer penGuins")
+
+# primeiro caracter maiusculo de cada palavra
+stringr::str_to_title(string = "palmer penGuins")
+```
+
+## stringr
+
+Ordenar
+
+```{r}
+# ordenar - crescente
+stringr::str_sort(x = letters)
+
+# ordenar - decrescente
+stringr::str_sort(x = letters, dec = TRUE)
+```
+
+## stringr
+
+Alterar valores das colunas
+
+```{r}
+# alterar valores das colunas
+penguins_stringr_valores <- penguins %>% 
+  dplyr::mutate(species = stringr::str_to_lower(species))
+```
+
+Alterar nome das colunas
+
+```{r}
+# alterar nome das colunas
+penguins_stringr_nomes <- penguins %>% 
+  dplyr::rename_with(stringr::str_to_title)
+```
+
+#
+
+<center><img src="img/package_forcats.png" style="width:50%"/></center>
+
+::: footer
+[forcats](https://forcats.tidyverse.org/)
+:::
+
+## Descrição
+
+- Conjunto de ferramentas úteis para facilitar a manipulação de **fatores** e **seus níveis**
+- **Exemplos**: mudar a ordem dos níveis, mudar os valores dos níveis, adicionar e remover níveis, combinar múltiplos níveis
+- Pode ser utilizado em conjunto com o pacote `dplyr` para manejar colunas
+
+## forcats
+
+Converter dados de `string` para `factor`
+
+```{r}
+# converter dados de string para factor
+forcats::as_factor(penguins_raw$Species) %>% head()
+```
+
+Mudar o nome dos níveis
+
+```{r}
+# mudar o nome dos niveis
+forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo") %>% head()
+```
+
+## forcats
+
+Inverter os níveis
+
+```{r}
+# inverter os niveis
+forcats::fct_rev(penguins$species) %>% head()
+```
+
+Especificar a ordem dos níveis
+
+```{r}
+# especificar a ordem dos niveis
+forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %>% head()
+```
+
+## forcats
+
+Níveis pela ordem em que aparecem
+
+```{r}
+# niveis pela ordem em que aparecem
+forcats::fct_inorder(penguins$species) %>% head()
+```
+
+Ordem (decrescente) de frequência
+
+```{r}
+# ordem (decrescente) de frequecia
+forcats::fct_infreq(penguins$species) %>% head()
+```
+
+## forcats
+
+Agregação de níveis raros em um nível
+
+```{r}
+# agregacao de niveis raros em um nivel
+forcats::fct_lump(penguins$species) %>% head()
+```
+
+Transformar várias colunas em fator
+
+```{r}
+# transformar varias colunas em fator
+penguins_raw_multi_factor <- penguins_raw %>% 
+  dplyr::mutate(across(where(is.character), forcats::as_factor))
+```
+
+# 
+
+<center><img src="img/package_lubridate.png" style="width:50%"/></center>
+
+::: footer
+[lubridate](https://lubridate.tidyverse.org/)
+:::
+
+# 
+
+<center>
+<img src="img/lubridate_allison.png" style="width:70%"/>
+</center>
+
+::: footer
+Artwork by [@allison_horst](https://x.com/allison_horst)
+:::
+
+## lubridate
+
+- Pacote à parte do tidyverse
+- Carregar sempre que for utilizar
+
+```{r}
+# carregar
+library(lubridate)
+```
+
+## Descrição
+
+- Conjunto de funções para a manipulação de dados de **data** e **horário**
+- A manipulação desses dados **não é intuitiva** e muda dependendo do tipo de objeto de data e horário
+- O formato desses dados deve levar em consideração **fusos horários**, **anos bissextos**, **horários de verão**, etc.
+- **Exemplos**: transformações de data/horário, componentes, arredondamentos, durações, períodos, intervalos, etc.
+
+## lubridate
+
+Tipos de dados
+
+- **Data**: tempo em dias, meses e anos `<date>`
+- **Horário**: tempo dentro de um dia `<time>`
+- **Data-horário**: tempo em um instante (data mais tempo) `<dttm>`
+
+- Para trabalhar exclusivamente com horários, podemos utilizar o pacote 
+
+::: footer
+[hms](https://hms.tidyverse.org/)
+:::
+
+
+## lubridate
+
+Algumas letras possuem significados temporais, sendo abreviações de diferentes períodos em inglês: 
+
+<br>
+
+- **y**ear (ano), **m**onth (mês) 
+
+- **w**eak (semana), **d**ay (dia) 
+
+- **h**our (hora), **m**inute (minuto) e **s**econd (segundo)
+
+## lubridate
+
+Data e horários atuais
+
+```{r}
+# extrair a data nesse instante
+lubridate::today()
+```
+
+<br>
+
+```{r}
+# extrair a data e tempo nesse instante
+lubridate::now()
+```
+
+## lubridate
+
+Existem três maneiras de criar um dado de data/horário
+
+1. De um string ou caracter
+1. De componentes individuais de data e horário
+1. De um objeto de data/horário existente
+
+## lubridate
+
+**1. String ou caracter **
+
+- Os dados de data/horário geralmente estão no formato de strings
+- Podemos transformar os dados especificando a ordem dos seus componentes usando as letras `y` (ano), `m` (mês) e `d` (dia)
+
+```{r}
+# strings e numeros para datas
+lubridate::dmy("03-03-2021")
+```
+
+## lubridate
+
+**1. String ou caracter **
+
+Essas funções também aceitam números sem aspas, além funcionarem em outros diversos formatos
+
+```{r eval=FALSE}
+# strings e numeros para datas
+lubridate::dmy("03-Mar-2021")
+lubridate::dmy(03032021)
+lubridate::dmy("03032021")
+lubridate::dmy("03/03/2021")
+lubridate::dmy("03.03.2021")
+```
+
+## lubridate
+
+**1. String ou caracter **
+
+Especificar horários e Fusos horários
+
+```{r eval=FALSE}
+# especificar horarios e fuso horario
+lubridate::dmy_h("03-03-2021 13")
+lubridate::dmy_hm("03-03-2021 13:32")
+lubridate::dmy_hms("03-03-2021 13:32:01")
+lubridate::dmy_hms("03-03-2021 13:32:01", tz = "America/Sao_Paulo")
+```
+
+## lubridate
+
+**2. Componentes individuais de data e horário**
+
+```{r}
+# dados com componentes individuais
+dados <- tibble::tibble(
+  ano = c(2021, 2021, 2021),
+  mes = c(1, 2, 3),
+  dia = c(12, 20, 31),
+  hora = c(2, 14, 18), 
+  minuto = c(2, 44, 55))
+dados
+```
+
+## lubridate
+
+**2. Componentes individuais de data e horário**
+
+```{r}
+# dados com componentes individuais
+dados %>% 
+  dplyr::mutate(data = lubridate::make_datetime(ano, mes, dia, hora, minuto))
+```
+
+## lubridate
+
+**3. Objeto de data/horário existente**
+
+```{r}
+# data para data-horario
+lubridate::as_datetime(today())
+
+# data-horario para data
+lubridate::as_date(now())
+```
+
+## lubridate
+
+Funções para acessar e definir componentes individuais de datas e horários
+
+::: {style="font-size: 70%;"}
+- `year()`: acessa o ano
+- `month()`: acessa o mês
+- `day()`: acessa o dia
+- `yday()`: acessa o dia do ano
+- `mday()`: acessa o dia do mês
+- `wday()`: acessa o dia da semana
+- `hour()`: acessa as horas
+- `minute()`: acessa os minutos
+- `second()`: acessa os segundos
+:::
+
+## lubridate
+
+Funções para acessar e definir componentes individuais de datas e horários
+
+```{r eval=FALSE}
+# extrair
+lubridate::year(now())
+lubridate::month(now())
+lubridate::month(now(), label = TRUE)
+lubridate::day(now())
+lubridate::wday(now())
+lubridate::wday(now(), label = TRUE)
+lubridate::second(now())
+```
+
+## lubridate
+
+Inclusão de informações de datas e horários
+
+```{r}
+# data
+data <- dmy_hms("04-03-2021 01:04:56")
+
+# incluir
+lubridate::year(data) <- 2020
+lubridate::month(data) <- 01
+lubridate::hour(data) <- 13
+```
+
+<br>
+
+```{r}
+# incluir varios valores
+update(data, year = 2020, month = 1, mday = 1, hour = 1)
+```
+
+# 
+
+<center><img src="img/package_purrr.png" style="width:50%"/></center>
+
+::: footer
+[purrr](https://purrr.tidyverse.org/)
+:::
+
+## Descrição
+
+- Implementa a **Programação Funcional no R**, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores
+- Permite substituir muitos *loops for* por um código mais curto
+
+<center><img src="img/purrr_cats.jpeg" style="width:40%"/></center>
+
+## purrr
+
+*Loop*
+
+Um *loop for* é uma iteração: um bloco de código é repetido mudando um contador de uma lista
+
+```{r}
+# loop for
+for(i in 1:10){
+  print(i)
+}
+```
+
+## purrr
+
+**Programação funcional**
+
+::: {style="font-size: 70%;"}
+```{r}
+# loop for com map
+purrr::map(.x = 1:10, .f = print)
+```
+:::
+
+## purrr
+
+**Estrutura**
+
+- `map(.x, .f)`
+- `.x`: uma vetor, lista ou data frame
+- `.f`: uma função
+
+<center><img src="img/purrr_map.png" style="width:45%"/></center>
+
+## purrr
+
+Exemplo: aplicar a função `sum()` para somar os valores de vários elementos de uma lista
+
+```{r}
+# lista
+x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
+
+# funcao map
+purrr::map(x, sum)
+```
+
+## purrr
+
+**Tipos de retorno**
+
+Diferentes funções retornam diferentes estruturas de dados
+
+::: {style="font-size: 70%;"}
+- `map()`: retorna uma lista
+- `map_chr()`: retorna um vetor de strings
+- `map_dbl()`: retorna um vetor numérico (double)
+- `map_int()`: retorna um vetor numérico (integer)
+- `map_lgl()`: retorna um vetor lógico
+- `map_dfr()`: retorna um data frame (por linhas)
+- `map_dfc()`: retorna um data frame (por colunas)
+:::
+
+## purrr
+
+**Tipos de retorno**
+
+```{r}
+# variacoes da funcao map
+purrr::map_dbl(x, sum)
+purrr::map_chr(x, paste, collapse = " ")
+```
+
+## purrr
+
+**Duas ou mais listas em paralelo**
+
+```{r}
+# listas
+x <- list(3, 5, 0, 1)
+y <- list(3, 5, 0, 1)
+z <- list(3, 5, 0, 1)
+
+# map2* duas litas
+purrr::map2_dbl(x, y, prod)
+
+# pmap muitas listas
+purrr::pmap_dbl(list(x, y, z), prod)
+```
+
+## purrr
+
+Implementar rotinas de manipulação e análise de dados
+
+```{r}
+# resumo dos dados
+penguins %>% 
+  dplyr::select(where(is.numeric)) %>% 
+  tidyr::drop_na() %>% 
+  purrr::map_dbl(mean)
+```
+
+## purrr
+
+Implementar rotinas de manipulação e análise de dados
+
+::: {style="font-size: 70%;"}
+```{r}
+# analise dos dados
+penguins %>%
+  dplyr::group_split(island, species) %>% 
+  purrr::map(~ lm(bill_depth_mm ~ bill_length_mm, data = .x)) %>% 
+  purrr::map(summary) %>% 
+  purrr::map("r.squared")
+```
+:::
+
+## purrr
+
+**Material**
+
+- [Webinar de purrr avançado](https://youtu.be/vb1lD9_AFcU) - Curso-R
+- [purrr tutorial](https://jennybc.github.io/purrr-tutorial/) - Jennifer (Jenny) Bryan
+
+<center><img src="img/general_curso_r.png" style="width:60%"/></center>
+
+## purrr
+
+**furrr: programação funcional paralelizada**
+
+Faz o mapeamento em paralelo utilizando os *cores* do processador
+
+<center><img src="img/package_furrr.png" style="width:35%"/></center>
+
+::: footer
+[furrr](https://furrr.futureverse.org/)
+:::
+
+## purrr
+
+**furrr: programação funcional paralelizada**
+
+Número de *cores* do seu computador
+
+```{r}
+# carregar
+library(parallel)
+
+# numero de cores
+parallel::detectCores()
+```
+
+![](img/core01.png){.absolute width=400 height=250 right=500 top=410}
+![](img/core02.png){.absolute width=250 height=250 right=200 top=410}
+
+::: footer
+[Quick Intro to Parallel Computing in R](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
+:::
+
+
+::: footer
+[Quick Intro to Parallel Computing in R](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
+:::
+
+
+# Dúvidas?
+
+# Dúvidas?
+
+## Muito obrigado!
+
+::::: columns
+::: {.column width="50%"}
+Agradecimentos:
+
+- [Prof. Tadeu Siqueira](https://tsiqueiralab.weebly.com/)
+- [Prof. Miltinho](https://leec.eco.br/)
+
+![](img/fapesp.png){.absolute width=40% right=650 top=450}
+:::
+
+::: {.column width="50%"}
+Contato:
+
+<center>
+[mauricio.vancine\@gmail.com]() [mauriciovancine.github.io](mauriciovancine.github.io)
+<img src="img/gif_frogs.gif" style="width:75%"/>
+</center>
+:::
+:::::
+
+::: footer
+Slides por [Maurício Vancine](https://mauriciovancine.github.io/), feitos com [Quarto](https://quarto.org/). Código disponível no [GitHub](https://github.com/mauriciovancine/workshop-r-introduction/blob/master/01_slides/slides.qmd).
+:::
