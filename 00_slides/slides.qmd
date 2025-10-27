@@ -212,6 +212,20 @@ Amostragem de insetos e fragmentação em Balbinas (AM)
 [Colares et al. (2025)](https://doi.org/10.1111/1365-2656.70117), [Gonçalves-Souza et al. (2025)](https://doi.org/10.1111/1365-2656.70165)
 :::
 
+## Repositório do GitHub
+
+<br>
+
+[https://github.com/mauriciovancine/workshop-r-manipulation](https://github.com/mauriciovancine/workshop-r-manipulation)
+
+<center>
+<img src="img/github_logo2.png" style="width:60%"/>
+</center>
+
+::: footer
+[workshop-r-manipulation](https://github.com/mauriciovancine/workshop-r-manipulation)
+:::
+
 ## Script
 
 Abram o script
