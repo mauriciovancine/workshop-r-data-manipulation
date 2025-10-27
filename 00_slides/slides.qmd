@@ -12,6 +12,7 @@ format:
     hash-type: number
     preview-links: false
     chalkboard: true
+    include-after-body: script_blank.html
     logo: "https://www.r-project.org/logo/Rlogo.svg"
     execute:
       echo: true

@@ -957,7 +957,7 @@ $ precipitation         &lt;chr&gt; "853", "1318", "1248", "1376", "1689", "1249
 <p><code>sum(log(sample(1:10, 10000, rep = TRUE)))</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_a0f2d36b" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;font-size:2em;">
+<div class="countdown" id="timer_1694138d" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;font-size:2em;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2299,7 +2299,7 @@ Levels: Adelie Gentoo Other</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href=""></a><span class="co"># extrair a data e tempo nesse instante</span></span>
 <span id="cb160-2"><a href=""></a>lubridate<span class="sc">::</span><span class="fu">now</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-10-27 08:36:41 -03"</code></pre>
+<pre><code>[1] "2025-10-27 11:41:04 -03"</code></pre>
 </div>
 </div>
 </section>
@@ -2982,6 +2982,15 @@ Levels: Adelie Gentoo Other</code></pre>
           RevealZoom
         ]
       });
+    </script>
+    <script>
+    // Faz com que todos os links abram em nova aba
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('a[href]').forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    });
     </script>
     
     <script>

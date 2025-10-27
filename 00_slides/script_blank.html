@@ -1,0 +1,9 @@
+<script>
+// Faz com que todos os links abram em nova aba
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+});
+</script>
