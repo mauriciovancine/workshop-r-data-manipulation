@@ -216,14 +216,14 @@ Amostragem de insetos e fragmentação em Balbinas (AM)
 
 <br>
 
-[https://github.com/mauriciovancine/workshop-r-manipulation](https://github.com/mauriciovancine/workshop-r-manipulation)
+[https://github.com/mauriciovancine/workshop-r-data-manipulation](https://github.com/mauriciovancine/workshop-r-data-manipulation)
 
 <center>
 <img src="img/github_logo2.png" style="width:60%"/>
 </center>
 
 ::: footer
-[workshop-r-manipulation](https://github.com/mauriciovancine/workshop-r-manipulation)
+[workshop-r-data-manipulation](https://github.com/mauriciovancine/workshop-r-data-manipulation)
 :::
 
 ## Script
