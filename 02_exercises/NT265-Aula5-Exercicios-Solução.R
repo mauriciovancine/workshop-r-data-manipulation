@@ -4,7 +4,6 @@
 #' date: 2025-11-29
 #' ----
 
-
 # pacotes -----------------------------------------------------------------
 
 # pacotes
@@ -14,9 +13,8 @@ library(palmerpenguins)
 # dados -------------------------------------------------------------------
 
 # dados
-data("penguins")
-penguins <- penguins
 head(penguins)
+head(penguins_raw)
 
 # readr, readxl e writexl -------------------------------------------------
 
@@ -41,10 +39,12 @@ penguins %>%
 # tibble ------------------------------------------------------------------
 
 ## exercicio 04 ----
-# crie um tibble com o número de indivíduos por espécie
+# crie um tibble com o número de indivíduos por espécie. Use um table() para saber.
+table(penguins$species)
+
 meu_tibble <- tibble::tibble(
     especie = unique(penguins$species),
-    individuos = c(44, 119, 123))
+    individuos = c(152, 68, 124))
 meu_tibble
 
 # maggriter ---------------------------------------------------------------
@@ -53,12 +53,12 @@ meu_tibble
 # calcule a massa média de cada espécie
 penguins %>%
     dplyr::group_by(species) %>%
-    dplyr::summarise(media_massa = mean(body_mass_g, na.rm = TRUE))
+    dplyr::summarise(massa_media = mean(body_mass_g, na.rm = TRUE))
 
 # tidyr -------------------------------------------------------------------
 
 ## exercicio 06 ----
-# reorganize medidas de comprimento de asa e bico em formato longo
+# reorganize as medidas de comprimento de asa e bico em formato longo
 longo <- penguins %>%
     dplyr::select(species, flipper_length_mm, bill_length_mm) %>%
     tidyr::pivot_longer(
@@ -102,7 +102,7 @@ penguins %>%
         desvio = sd(body_mass_g, na.rm = TRUE))
 
 ## exercicio 11 ----
-# selecione todas as colunas que terminam com "_mm"
+# selecione todas as colunas que terminam com "_mm". dica: dplyr::select() e ends_with
 penguins %>%
     dplyr::select(ends_with("_mm")) %>%
     head()
@@ -114,19 +114,20 @@ penguins %>%
 stringr::str_to_lower(unique(penguins$island))
 
 ## exercicio 13 ----
-# quais colunas possuem nome com "_mm"
+# quais colunas possuem nome com "_mm". Dica: stringr::str_subset
 stringr::str_subset(colnames(penguins), "mm")
 
 # forcats -----------------------------------------------------------------
 
 ## exercicio 14 ----
-# veja a frequência das espécies ordenadas
-penguins %>%
-    dplyr::mutate(species = forcats::fct_infreq(species)) %>%
-    dplyr::count(species)
+# mude a ordem dos fatores das especies: Chinstrap, Adelie e Gentoo.
+# Dica: dplyr::mutate e forcats::fct_relevel
+penguins_relevel <- penguins %>%
+    dplyr::mutate(species = forcats::fct_relevel(species, c("Chinstrap", "Adelie", "Gentoo")))
+penguins_relevel$species
 
 ## exercicio 15 ---- 
-# agrupe a classe de ilha menos abundante em "Outras"
+# agrupe a classe de ilha menos abundante em "Outras". Dica: forcats::fct_lump_lowfreq
 penguins %>%
     dplyr::mutate(island_fact = forcats::fct_lump_lowfreq(island, other_level = "Outras")) %>% 
     dplyr::count(island_fact)
@@ -134,13 +135,13 @@ penguins %>%
 # lubridate ---------------------------------------------------------------
 
 ## exercicio 16 ---- 
-# extraia mês e ano das datas do palmerpenguins
-month(penguins_datas$data_obs, label = TRUE)
-year(penguins_datas$data_obs)
+# extraia mês e ano das datas da coluna `Date Egg` do dado penguins_raw
+lubridate::month(penguins_raw$`Date Egg`, label = TRUE)
+lubridate::year(penguins_raw$`Date Egg`)
 
 ## exercicio 17 ---- 
-# crie uma coluna com datas a partir de hoje acrescentando datas somando dias aleatórios de 0 a 100
-# dica: sample(0:100, nrow(penguins), replace = TRUE)
+# crie uma coluna com datas a partir de hoje somando dias aleatórios de 0 a 100
+# dica: mutate, today e sample(0:100, nrow(penguins), replace = TRUE)
 set.seed(123)
 penguins_datas <- penguins %>%
     dplyr::mutate(data_random = today() + days(sample(0:100, nrow(penguins), replace = TRUE)))
@@ -150,13 +151,13 @@ penguins_datas$data_random
 
 ## exercicio 18 ----
 # crie uma lista com as massas por espécie e calcule médias
-# dica: purrr::split(var, group)
-listas_massa <- purrr::split(penguins$body_mass_g, penguins$species)
+# dica: split(var, group) e purrr::map
+listas_massa <- split(penguins$body_mass_g, penguins$species)
 purrr::map(listas_massa, mean, na.rm = TRUE)
 
 ## exercicio 19 ----
 # crie um tibble com o desvio padrao das massas por espécie
-# use o resultado do ex. 18 e purrr::map_df
+# use o resultado do split do ex. 18 e purrr::map_df
 purrr::map_df(listas_massa, sd, na.rm = TRUE)
 
 # desafio -----------------------------------------------------------------
@@ -165,7 +166,7 @@ purrr::map_df(listas_massa, sd, na.rm = TRUE)
 # calcule massa média por ilha, exporte para Excel e depois importe
 penguins %>%
     dplyr::group_by(island) %>%
-    dplyr::summarise(media_massa = mean(body_mass_g, narm = TRUE)) %>%
+    dplyr::summarise(media_massa = mean(body_mass_g, na.rm = TRUE)) %>%
     writexl::write_xlsx("media_massa_ilha.xlsx")
 
 readxl::read_excel("media_massa_ilha.xlsx")

@@ -207,7 +207,7 @@ Artwork by [@allison_horst](https://x.com/allison_horst)
 Amostragem de insetos e fragmentação em Balbinas (AM)
 
 ![](img/ml01.jpg){.absolute width="550" right="650" top="170"}
-![](img/ml02.jpg){.absolute width="800" right="-170" top="120"}
+![](img/ml02.jpg){.absolute width="800" right="-170" top="130"}
 
 :::footer
 [Colares et al. (2025)](https://doi.org/10.1111/1365-2656.70117), [Gonçalves-Souza et al. (2025)](https://doi.org/10.1111/1365-2656.70165)
@@ -274,10 +274,13 @@ Abram o script
 <img src="img/tidyverse_flowchart.png" style="width:90%"/>
 </center>
 
+::: footer
+[R Markdown + R + RStudio](https://ohi-science.org/globalfellows/why_rmarkdown.html)
+:::
+
 ## Artigos {.smaller}
 
 -   Wickham, Hadley. "Tidy data." Journal of Statistical Software 59.10 (2014): 1-23.
-
 -   Wickham, Hadley, et al. "Welcome to the Tidyverse." Journal of Open Source Software 4.43 (2019): 1686.
 
 <center>
@@ -371,7 +374,11 @@ Todas as funções dos pacotes `tidyverse` usam `fonte minúscula` e `_` para se
 
 `group_by()`
 
-![](img/code_snake_case.png){.absolute width="500" height="250" right="150" top="350"}
+![](img/code_snake_case.png){.absolute width="500" right="150" top="350"}
+
+::: footer
+[Mengenal 4 Macam Gaya Penulisan Case dalam Kode Program](https://www.petanikode.com/case-kode-program/)
+:::
 
 ## Sintaxe
 
@@ -386,6 +393,12 @@ Geralmente indica-se de quais pacotes as funções são utilizadas (`pacote::fun
 `dplyr::left_join()`
 
 `dplyr::group_by()`
+
+![](img/conflicted.jpeg){.absolute width=600 right=0 top=400}
+
+::: footer
+[conflicted](https://conflicted.r-lib.org/index.html)
+:::
 
 # 
 
@@ -584,9 +597,9 @@ tb
 as.data.frame(tb)
 ```
 
-<br>
-
-<center><img src="img/tibble.webp" style="width:40%"/></center>
+<center>
+<img src="img/tibble.webp" style="width:45%"/>
+</center>
 
 ## Espiando os dados {.smaller}
 
@@ -807,7 +820,9 @@ library(palmerpenguins)
 library(palmerpenguins)
 ```
 
-<center><img src="img/culmen_depth.png" style="width:50%"/></center>
+<center>
+<img src="img/culmen_depth.png" style="width:50%"/>
+</center>
 
 ::: footer
 [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
@@ -825,9 +840,9 @@ tibble::glimpse(penguins)
 tibble::glimpse(penguins_raw)
 ```
 
-<br>
-
-<center><img src="img/culmen_depth.png" style="width:50%"/></center>
+<center>
+<img src="img/culmen_depth.png" style="width:50%"/>
+</center>
 
 ::: footer
 [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
@@ -844,14 +859,15 @@ tibble::glimpse(penguins_raw)
 ## Descrição {.smaller}
 
 -   Funções para tornar um conjunto de dados *tidy* (organizados), facilitando a manipulação, modelagem e visualização
-
 -   Um conjunto de dados é condiderando *tidy* quando:
 
 1.  Cada variável está em uma coluna
 2.  Cada observação está em uma linha
 3.  Cada valor está em uma célula
 
-<center><img src="img/tidyr_data01.png" style="width:100%"/></center>
+<center>
+<img src="img/tidyr_data01.png" style="width:100%"/>
+</center>
 
 ::: footer
 [Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)

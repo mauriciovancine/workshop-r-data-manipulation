@@ -29,7 +29,7 @@
 # tibble ------------------------------------------------------------------
 
 ## exercicio 04 ----
-# crie um tibble com o número de indivíduos por espécie
+# crie um tibble com o número de indivíduos por espécie. Use um table() para saber.
 
 # maggriter ---------------------------------------------------------------
 
@@ -58,7 +58,7 @@
 # calcule a média e o desvio-padrão da massa por espécie
 
 ## exercicio 11 ----
-# selecione todas as colunas que terminam com "_mm"
+# selecione todas as colunas que terminam com "_mm". dica: dplyr::select() e ends_with
 
 # stringr -----------------------------------------------------------------
 
@@ -66,12 +66,13 @@
 # padronize o nome das ilhas para minúsculas
 
 ## exercicio 13 ----
-# quais colunas possuem nome com "_mm"
+# quais colunas possuem nome com "_mm". Dica: stringr::str_subset
 
 # forcats -----------------------------------------------------------------
 
 ## exercicio 14 ----
-# veja a frequência das espécies ordenadas
+# mude a ordem dos fatores das especies: Chinstrap, Adelie e Gentoo. 
+# Dica: dplyr::mutate e forcats::fct_relevel
 
 ## exercicio 15 ---- 
 # agrupe a classe de ilha menos abundante em "Outras"
