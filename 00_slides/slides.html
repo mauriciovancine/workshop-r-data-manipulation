@@ -391,6 +391,15 @@
 </div>
 </section>
 <section class="slide level2">
+<h2>Deep Learning em Ecologia</h2>
+<p>Projeto IARAA (Inteligência Artificial para Reconhecimento Ambiental da Amazônia)</p>
+<p><img data-src="img/iaraaa.png" class="absolute" style="top: 0px; right: -150px; width: 200px; "></p>
+<p><video data-src="video/iaraa_mamiferos.mp4" class="absolute" style="top: 200px; right: 770px; width: 280px; " controls=""><a href="video/iaraa_mamiferos.mp4">Video</a></video> <video data-src="video/iaraa_aves.mp4" class="absolute" style="top: 200px; right: 380px; width: 280px; " controls=""><a href="video/iaraa_aves.mp4">Video</a></video> <video data-src="video/iaraa_peixes.mp4" class="absolute" style="top: 200px; right: 10px; width: 280px; " controls=""><a href="video/iaraa_peixes.mp4">Video</a></video></p>
+<div class="footer">
+<p><a href="https://www.instagram.com/projetoiaraa/">Projeto IARAA</a></p>
+</div>
+</section>
+<section class="slide level2">
 <h2>Repositório do GitHub</h2>
 <p><br></p>
 <p><a href="https://github.com/mauriciovancine/workshop-r-data-manipulation">https://github.com/mauriciovancine/workshop-r-data-manipulation</a></p>
@@ -966,7 +975,7 @@ $ precipitation         &lt;chr&gt; "853", "1318", "1248", "1376", "1689", "1249
 <p><code>sum(log(sample(1:10, 10000, rep = TRUE)))</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c9d23c4b" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;font-size:2em;">
+<div class="countdown" id="timer_9409f1b6" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;font-size:2em;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1070,7 +1079,6 @@ $ precipitation         &lt;chr&gt; "853", "1318", "1248", "1376", "1689", "1249
 <span id="cb34-6"><a href=""></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(penguins)</span>
 <span id="cb34-7"><a href=""></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(penguins_raw)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><br></p>
 <center>
 <img src="img/culmen_depth.png" style="width:50%">
 </center>
@@ -1091,8 +1099,8 @@ $ precipitation         &lt;chr&gt; "853", "1318", "1248", "1376", "1689", "1249
 <section class="slide level2 smaller">
 <h2>Descrição</h2>
 <ul>
-<li><p>Funções para tornar um conjunto de dados <em>tidy</em> (organizados), facilitando a manipulação, modelagem e visualização</p></li>
-<li><p>Um conjunto de dados é condiderando <em>tidy</em> quando:</p></li>
+<li>Funções para tornar um conjunto de dados <em>tidy</em> (organizados), facilitando a manipulação, modelagem e visualização</li>
+<li>Um conjunto de dados é condiderando <em>tidy</em> quando:</li>
 </ul>
 <ol type="1">
 <li>Cada variável está em uma coluna</li>
@@ -2300,7 +2308,7 @@ Levels: Adelie Gentoo Other</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb158"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href=""></a><span class="co"># extrair a data nesse instante</span></span>
 <span id="cb158-2"><a href=""></a>lubridate<span class="sc">::</span><span class="fu">today</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-10-27"</code></pre>
+<pre><code>[1] "2025-11-03"</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -2308,7 +2316,7 @@ Levels: Adelie Gentoo Other</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href=""></a><span class="co"># extrair a data e tempo nesse instante</span></span>
 <span id="cb160-2"><a href=""></a>lubridate<span class="sc">::</span><span class="fu">now</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-10-27 23:08:54 -03"</code></pre>
+<pre><code>[1] "2025-11-03 07:57:16 -03"</code></pre>
 </div>
 </div>
 </section>
@@ -2407,12 +2415,12 @@ Levels: Adelie Gentoo Other</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb170"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href=""></a><span class="co"># data para data-horario</span></span>
 <span id="cb170-2"><a href=""></a>lubridate<span class="sc">::</span><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-10-27 UTC"</code></pre>
+<pre><code>[1] "2025-11-03 UTC"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb172"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href=""></a><span class="co"># data-horario para data</span></span>
 <span id="cb172-2"><a href=""></a>lubridate<span class="sc">::</span><span class="fu">as_date</span>(<span class="fu">now</span>())</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-10-27"</code></pre>
+<pre><code>[1] "2025-11-03"</code></pre>
 </div>
 </div>
 </section>

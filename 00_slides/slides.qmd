@@ -213,6 +213,20 @@ Amostragem de insetos e fragmentação em Balbinas (AM)
 [Colares et al. (2025)](https://doi.org/10.1111/1365-2656.70117), [Gonçalves-Souza et al. (2025)](https://doi.org/10.1111/1365-2656.70165)
 :::
 
+## Deep Learning em Ecologia
+
+Projeto IARAA (Inteligência Artificial para Reconhecimento Ambiental da Amazônia)
+
+![](img/iaraaa.png){.absolute width=200 right=-150 top=0}
+
+![](video/iaraa_mamiferos.mp4){.absolute width=280 right=770 top=200}
+![](video/iaraa_aves.mp4){.absolute width=280 right=380 top=200}
+![](video/iaraa_peixes.mp4){.absolute width=280 right=10 top=200}
+
+:::footer
+[Projeto IARAA](https://www.instagram.com/projetoiaraa/)
+:::
+
 ## Repositório do GitHub
 
 <br>
